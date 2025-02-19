@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static socialaccount %}
+
+{% block content %}
+<div class="container-fluid auth-container">
+    <div class="auth-card">
+        <div class="branding">
+            <i class="material-icons">lock</i>
+            <h2 class="mb-4">Acesse sua conta</h2>
+        </div>
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+            <div class="input-group">
+                <span class="input-icon">
+                    <i class="material-icons">person</i>
+                </span>
+                <input type="text" name="login" placeholder="Usuário/E-mail" required class="form-control">
+            </div>
+            <div class="input-group">
+                <span class="input-icon">
+                    <i class="material-icons">lock</i>
+                </span>
+                <input type="password" name="password" placeholder="Senha" required class="form-control">
+            </div>
+            <button type="submit" class="auth-button">
+                <i class="material-icons">login</i>
+                Entrar
+            </button>
+            <div class="auth-divider">
+                <span>ou continue com</span>
+            </div>
+            <div class="social-auth">
+                <a href="{% provider_login_url 'google' %}" class="social-button google">
+                    <i class="material-icons">mail</i>
+                    Google
+                </a>
+                <a href="{% provider_login_url 'facebook' %}" class="social-button facebook">
+                    <i class="material-icons">facebook</i>
+                    Facebook
+                </a>
+            </div>
+            <div class="auth-links">
+                <a href="{% url 'account_reset_password' %}">Recuperar senha</a>
+                <a href="{% url 'account_signup' %}">Criar conta</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
     'crispy_forms',
     'crispy_bootstrap5',
     'widget_tweaks',
@@ -62,6 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'health_mvp.context_processors.color_palette',
             ],
         },
     },
@@ -100,9 +103,15 @@ USE_I18N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Color Palette
+COLOR_PALETTE = {
+    'primary': 'rgb(174,206,226)',
+    'secondary': '#764ba2'
+}
 
 # Media files
 MEDIA_URL = 'media/'
