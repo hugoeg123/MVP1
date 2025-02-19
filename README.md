@@ -22,9 +22,18 @@ Aplicação full-stack para gestão de saúde com **backend Python (FastAPI)** e
 git clone https://github.com/hugoeg123/MVP1.git
 cd MVP1
 
-# 2. Inicie os containers
-docker-compose up -d --build
+# 2. Inicie os containers e construa as imagens
+docker-compose up --build
 
-# 3. Acesse:
+# 3. Em outro terminal, execute as migrações do banco
+docker-compose exec backend alembic upgrade head
+
+# 4. Se necessário, instale as dependências do frontend
+cd client && npm install
+
+# 5. Para executar os testes do backend
+docker-compose exec backend pytest -v
+
+# 6. Acesse:
 # Backend: http://localhost:8000/docs
 # Frontend: http://localhost:3000

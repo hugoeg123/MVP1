@@ -1,17 +1,22 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from datetime import timedelta
+from sqlalchemy.ext.asyncio import AsyncSession
 from ..auth.jwt import create_access_token, get_current_user
 from ..core.config import settings
 from ..models.user import User, UserCreate
+from ..db.session import get_db
+from ..auth.security import authenticate_user
 
 router = APIRouter(prefix="/api/v1/auth", tags=["auth"])
 
 @router.post("/login")
-async def login(form_data: OAuth2PasswordRequestForm = Depends()):
-    # Here you would typically verify the user credentials against your database
-    # For demo purposes, we'll use a mock user
-    if form_data.username != "demo@example.com" or form_data.password != "demo123":
+async def login(
+    form_data: OAuth2PasswordRequestForm = Depends(),
+    db: AsyncSession = Depends(get_db)
+):
+    user = await authenticate_user(db, form_data.username, form_data.password)
+    if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect username or password",
@@ -19,11 +24,20 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
         )
     
     access_token = create_access_token(
-        data={"sub": form_data.username},
+        data={"sub": user.email},
         expires_delta=timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     )
     
-    return {"access_token": access_token, "token_type": "bearer"}
+    refresh_token = create_access_token(
+        data={"sub": user.email},
+        expires_delta=timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS)
+    )
+    
+    return {
+        "access_token": access_token,
+        "refresh_token": refresh_token,
+        "token_type": "bearer"
+    }
 
 @router.post("/register", response_model=User)
 async def register(user: UserCreate):

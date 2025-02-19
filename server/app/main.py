@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.core.logging import log_middleware
 
 app = FastAPI(
     title="Health MVP API",
@@ -15,6 +16,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Add logging middleware
+app.middleware("http")(log_middleware)
 
 @app.get("/")
 async def root():
