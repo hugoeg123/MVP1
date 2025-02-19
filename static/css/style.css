@@ -1,5 +1,12 @@
 /* Custom styles for Health MVP */
 
+/* Add gradient background to body */
+body {
+    background: linear-gradient(45deg, rgb(174,206,226) 0%, #aed0e2 100%);
+    min-height: 100vh;
+    margin: 0;
+}
+
 /* Add some padding to the main content */
 .container {
     padding-top: 2rem;
