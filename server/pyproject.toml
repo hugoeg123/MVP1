@@ -3,6 +3,7 @@ name = "health-mvp-backend"
 version = "1.0.0"
 description = "Backend API for the Health MVP application"
 authors = ["Hugo Garib <hugoeg123@github.com>"]
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.9"

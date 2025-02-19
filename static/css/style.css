@@ -1,0 +1,50 @@
+/* Custom styles for Health MVP */
+
+/* Add some padding to the main content */
+.container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Style the cards on the homepage */
+.card {
+    transition: transform 0.2s;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Style the navbar */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the buttons */
+.btn {
+    border-radius: 25px;
+    padding: 0.5rem 1.5rem;
+}
+
+/* Add some animation to links */
+.nav-link {
+    position: relative;
+    transition: color 0.3s;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: currentColor;
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}

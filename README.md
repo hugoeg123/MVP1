@@ -1,39 +1,65 @@
 # Health MVP 🏥
 
-Aplicação full-stack para gestão de saúde com **backend Python (FastAPI)** e **frontend React (TypeScript)**, desenvolvida para alta performance e fácil escalabilidade.
+Aplicação monolítica de gestão de saúde desenvolvida com Django, oferecendo uma solução completa e de fácil implantação.
 
 ## Tech Stack 🛠️
-| Camada       | Tecnologias                                                                 |
-|--------------|-----------------------------------------------------------------------------|
-| **Backend**  | FastAPI, PostgreSQL, Redis, SQLAlchemy Async, Celery, Pydantic, Poetry      |
-| **Frontend** | React 18, TypeScript, Vite, React Query, Tailwind CSS, Shadcn/ui, Zustand   |
-| **Infra**    | Docker, NGINX, GitHub Actions, Sentry, Prometheus                           |
+- **Framework:** Django 5.0.1
+- **Frontend:** Django Templates, Crispy Forms, Bootstrap 5
+- **Database:** PostgreSQL
+- **Autenticação:** Django AllAuth
+- **Estilo:** Django Widget Tweaks
 
-## Features Chave ✨
-- Autenticação OAuth2 com refresh tokens
-- Cache distribuído com Redis
-- Operações assíncronas com Celery (ex: integração Google Calendar)
-- Monitoramento de performance integrado
-- Design System consistente com Tailwind
+## Features ✨
+- Sistema completo de autenticação (login/registro)
+- Gestão de perfil de usuário
+- Agendamento de consultas
+- Histórico médico
+- Interface administrativa
+- Formulários responsivos
 
 ## Setup Rápido 🚀
+
 ```bash
 # 1. Clone o repositório
 git clone https://github.com/hugoeg123/MVP1.git
 cd MVP1
 
-# 2. Inicie os containers e construa as imagens
-docker-compose up --build
+# 2. Crie e ative um ambiente virtual
+python -m venv venv
+.\venv\Scripts\activate  # Windows
+source venv/bin/activate  # Linux/Mac
 
-# 3. Em outro terminal, execute as migrações do banco
-docker-compose exec backend alembic upgrade head
+# 3. Instale as dependências
+pip install -r requirements.txt
 
-# 4. Se necessário, instale as dependências do frontend
-cd client && npm install
+# 4. Execute as migrações
+python manage.py migrate
 
-# 5. Para executar os testes do backend
-docker-compose exec backend pytest -v
+# 5. Crie um superusuário
+python manage.py createsuperuser
 
-# 6. Acesse:
-# Backend: http://localhost:8000/docs
-# Frontend: http://localhost:3000
+# 6. Inicie o servidor
+python manage.py runserver
+
+# 7. Acesse:
+# Aplicação: http://localhost:8000
+# Admin: http://localhost:8000/admin
+```
+
+## Estrutura do Projeto 📁
+```
+health_mvp/
+├── manage.py
+├── health_mvp/
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── accounts/
+│   └── (autenticação e perfis)
+├── appointments/
+│   └── (agendamentos)
+├── medical_records/
+│   └── (prontuários)
+└── templates/
+    └── (templates HTML)
+```
