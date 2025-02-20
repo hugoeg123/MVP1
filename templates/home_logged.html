@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Health MVP{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <h1 class="display-4 mb-4">Bem-vindo, {{ user.get_full_name|default:user.email }}!</h1>
+        <p class="lead mb-4">Gerencie sua saúde de forma inteligente</p>
+
+        <div class="row mt-5">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <i class="material-icons" style="font-size: 48px; color: var(--primary);">calendar_today</i>
+                        <h5 class="card-title mt-3">Agendamentos</h5>
+                        <p class="card-text">Gerencie suas consultas e compromissos médicos</p>
+                        <a href="#" class="btn btn-primary">Ver Agenda</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <i class="material-icons" style="font-size: 48px; color: var(--primary);">medical_services</i>
+                        <h5 class="card-title mt-3">Prontuário</h5>
+                        <p class="card-text">Acesse seu histórico médico e exames</p>
+                        <a href="#" class="btn btn-primary">Ver Prontuário</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <i class="material-icons" style="font-size: 48px; color: var(--primary);">person</i>
+                        <h5 class="card-title mt-3">Perfil</h5>
+                        <p class="card-text">Atualize suas informações pessoais</p>
+                        <a href="#" class="btn btn-primary">Editar Perfil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content-area mt-5">
+            <input type="text" class="search-input" placeholder="Pesquisar produtos ou serviços de saúde...">
+        </div>
+    </div>
+</div>
+{% endblock %}
