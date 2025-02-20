@@ -6,7 +6,7 @@ html, body {
 
 /* Gradiente de fundo */
 body {
-    background: linear-gradient(135deg, #aed0e2 0%, #764ba2 100%);
+    background: linear-gradient(135deg, rgb(174,206,226) 0%, #ffffff 100%);
     margin: 0;
     display: flex;
     align-items: center;

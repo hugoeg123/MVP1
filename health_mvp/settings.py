@@ -36,8 +36,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     
     # Local apps
-    'accounts.apps.AccountsConfig',
-    'medical_records.apps.MedicalRecordsConfig',
+    'accounts.apps.UserAuthenticationConfig',
+    'medical_records.apps.PatientMedicalRecordsConfig',
 ]
 
 MIDDLEWARE = [

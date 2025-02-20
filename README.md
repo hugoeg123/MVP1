@@ -17,6 +17,34 @@ Aplicação monolítica de gestão de saúde desenvolvida com Django, oferecendo
 - Interface administrativa
 - Formulários responsivos
 
+## Estrutura do Projeto 🏗️
+
+### Apps Django
+
+#### Accounts (Autenticação)
+- Gerenciamento de autenticação de usuários
+- Sistema de login e registro
+- Integração com Django AllAuth
+- Controle de sessões e permissões
+
+#### Profiles (Perfis)
+- Gerenciamento de perfis de usuários
+- Informações pessoais e de contato
+- Preferências do usuário
+- Dados específicos por tipo de usuário (paciente/médico)
+
+#### Medical Records (Registros Médicos)
+- Histórico médico completo dos pacientes
+- Registro de diagnósticos e tratamentos
+- Documentação de exames e resultados
+- Acompanhamento do progresso do paciente
+
+#### Scheduling (Agendamento)
+- Sistema de agendamento de consultas
+- Gestão de disponibilidade médica
+- Confirmações e lembretes de consultas
+- Histórico de agendamentos
+
 ## Setup Rápido 🚀
 
 ```bash
@@ -62,4 +90,3 @@ health_mvp/
 │   └── (prontuários)
 └── templates/
     └── (templates HTML)
-```
