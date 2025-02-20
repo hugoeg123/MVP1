@@ -6,7 +6,7 @@ html, body {
 
 /* Gradiente de fundo */
 body {
-    background: linear-gradient(135deg, #aed0e2 0%, #764ba2 100%);
+    background: linear-gradient(135deg, rgb(174,206,226) 0%, rgb(174,206,226) 100%);
     margin: 0;
     display: flex;
     align-items: center;
@@ -46,8 +46,8 @@ body {
 }
 
 .btn-primary {
-    background-color: #764ba2;
-    border-color: #764ba2;
+    background-color: rgb(174,206,226);
+    border-color: rgb(174,206,226);
     padding: 0.75rem 1.5rem;
     border-radius: 10px;
     font-weight: 500;
@@ -55,7 +55,7 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: #663d8f;
-    border-color: #663d8f;
+    background-color: rgb(154,186,206);
+    border-color: rgb(154,186,206);
     transform: translateY(-2px);
 }
