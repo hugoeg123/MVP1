@@ -1,11 +1,12 @@
 /* Garanta que o container ocupe toda a altura da tela */
 html, body {
     height: 100%;
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 /* Gradiente de fundo */
 body {
-    background: linear-gradient(45deg, rgb(174,206,226) 0%, #aed0e2 100%);
+    background: linear-gradient(135deg, #aed0e2 0%, #764ba2 100%);
     margin: 0;
     display: flex;
     align-items: center;
@@ -40,13 +41,13 @@ body {
 }
 
 .form-control:focus {
-    border-color: rgb(174,206,226);
-    box-shadow: 0 0 0 0.2rem rgba(174,206,226,.25);
+    border-color: #aed0e2;
+    box-shadow: 0 0 0 0.2rem rgba(174,208,226,.25);
 }
 
 .btn-primary {
-    background-color: rgb(174,206,226);
-    border-color: rgb(174,206,226);
+    background-color: #764ba2;
+    border-color: #764ba2;
     padding: 0.75rem 1.5rem;
     border-radius: 10px;
     font-weight: 500;
@@ -54,7 +55,7 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: rgb(154,186,206);
-    border-color: rgb(154,186,206);
+    background-color: #663d8f;
+    border-color: #663d8f;
     transform: translateY(-2px);
 }
