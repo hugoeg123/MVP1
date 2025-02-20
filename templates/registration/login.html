@@ -3,26 +3,18 @@
 
 {% block content %}
 <div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow-lg">
-                <div class="card-body">
-                    <h2 class="card-title text-center mb-4">Login</h2>
-                    <form method="post">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <label class="form-label">Usuário</label>
-                            <input type="text" name="username" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Senha</label>
-                            <input type="password" name="password" class="form-control" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Entrar</button>
-                    </form>
-                </div>
-            </div>
+    <h2 class="text-center">Login</h2>
+    <form method="post" class="mx-auto" style="max-width: 400px;">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_username" class="form-label">Usuário</label>
+            <input type="text" name="username" class="form-control" required>
         </div>
-    </div>
+        <div class="mb-3">
+            <label for="id_password" class="form-label">Senha</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Entrar</button>
+    </form>
 </div>
 {% endblock %}

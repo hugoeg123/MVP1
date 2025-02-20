@@ -1,6 +1,7 @@
 /* Garanta que o container ocupe toda a altura da tela */
 html, body {
     height: 100%;
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 /* Gradiente de fundo */
@@ -15,16 +16,39 @@ body {
 
 /* Estilização do cartão */
 .card {
-    border-radius: 15px;
+    border-radius: 20px;
     border: none;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 2rem;
+    background: rgba(255, 255, 255, 0.98);
+    padding: 2.5rem;
     width: 100%;
     max-width: 400px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .shadow-lg {
-    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15)!important;
+}
+
+.card-title {
+    color: #2c3e50;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.card-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: rgb(174,206,226);
+    border-radius: 3px;
 }
 
 /* Estilização do formulário */
@@ -35,8 +59,11 @@ body {
 
 .form-control {
     border-radius: 10px;
-    padding: 0.75rem 1rem;
-    border: 1px solid rgba(0,0,0,.1);
+    padding: 1rem 1.2rem;
+    border: 2px solid rgba(174,206,226,0.2);
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    transition: all 0.3s ease;
 }
 
 .form-control:focus {
@@ -47,10 +74,14 @@ body {
 .btn-primary {
     background-color: rgb(174,206,226);
     border-color: rgb(174,206,226);
-    padding: 0.75rem 1.5rem;
-    border-radius: 10px;
-    font-weight: 500;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
     transition: all 0.3s ease;
+    margin-top: 1rem;
 }
 
 .btn-primary:hover {

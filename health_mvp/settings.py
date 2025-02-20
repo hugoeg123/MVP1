@@ -96,6 +96,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Static files configuration
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 # Internationalization
 LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'America/Sao_Paulo'
