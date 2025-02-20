@@ -15,19 +15,21 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="floating-nav-button">
+        <button class="btn btn-floating" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="material-icons">menu</span>
+        </button>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light floating-nav collapse" id="navbarNav">
         <div class="container">
             <a class="navbar-brand" href="{% url 'home' %}">Health MVP</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Meu Perfil</a>
-                        </li>
-                        <li class="nav-item">
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Meu Perfil</a>
+                    </li>
+                    <li class="nav-item">
                             <form method="post" action="{% url 'account_logout' %}">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-outline-primary">Sair</button>

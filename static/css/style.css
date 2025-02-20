@@ -2,9 +2,49 @@
 
 /* Add gradient background to body */
 body {
-    background: linear-gradient(45deg, rgb(174,206,226) 0%, #aed0e2 100%);
+    background: linear-gradient(45deg, rgb(174,206,226) 0%, rgb(174,206,226) 100%);
     min-height: 100vh;
     margin: 0;
+    position: relative;
+}
+
+/* Floating navigation button styles */
+.floating-nav-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1050;
+}
+
+.btn-floating {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-floating:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+/* Floating navigation menu styles */
+.floating-nav {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 1rem;
+    z-index: 1040;
+    min-width: 200px;
 }
 
 /* Add some padding to the main content */
