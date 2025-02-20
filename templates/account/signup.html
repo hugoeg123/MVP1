@@ -2,34 +2,30 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow-lg">
-                <div class="card-body">
-                    <h2 class="card-title text-center mb-4">Registrar</h2>
-                    <form method="post">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <label for="id_username" class="form-label">Usuário</label>
-                            <input type="text" name="username" class="form-control" id="id_username" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="id_email" class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control" id="id_email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="id_password1" class="form-label">Senha</label>
-                            <input type="password" name="password1" class="form-control" id="id_password1" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="id_password2" class="form-label">Confirmar Senha</label>
-                            <input type="password" name="password2" class="form-control" id="id_password2" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Registrar</button>
-                    </form>
+<div class="auth-container">
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">Registrar</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="id_username" class="form-label">Usuário</label>
+                    <input type="text" name="username" class="form-control" id="id_username" required>
                 </div>
-            </div>
+                <div class="mb-3">
+                    <label for="id_email" class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" id="id_email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="id_password1" class="form-label">Senha</label>
+                    <input type="password" name="password1" class="form-control" id="id_password1" required>
+                </div>
+                <div class="mb-3">
+                    <label for="id_password2" class="form-label">Confirmar Senha</label>
+                    <input type="password" name="password2" class="form-control" id="id_password2" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Registrar</button>
+            </form>
         </div>
     </div>
 </div>

@@ -4,10 +4,8 @@ html, body {
     font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-/* Gradiente de fundo */
-body {
-    background: linear-gradient(135deg, rgb(174,206,226) 0%, rgb(174,206,226) 100%);
-    margin: 0;
+/* Center content */
+.auth-container {
     display: flex;
     align-items: center;
     justify-content: center;

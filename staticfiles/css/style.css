@@ -2,12 +2,50 @@
 
 /* Add gradient background to body */
 body {
-    background: linear-gradient(135deg, rgb(174, 206, 226) 0%, rgba(255, 255, 255) 100%);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background: linear-gradient(135deg, rgb(174, 206, 226) 0%, rgba(255, 255, 255, 1) 100%);
     min-height: 100vh;
     margin: 0;
-    position: relative;
+}
+
+/* Floating navigation button styles */
+.floating-nav-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1050;
+}
+
+.btn-floating {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-floating:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+/* Floating navigation menu styles */
+.floating-nav {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 1rem;
+    z-index: 1040;
+    min-width: 200px;
 }
 
 /* Add some padding to the main content */
@@ -30,6 +68,95 @@ body {
 /* Style the navbar */
 .navbar {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Floating authentication buttons */
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.floating-auth-buttons .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-outline-primary.custom-registrar-style {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-outline-primary.custom-registrar-style:hover,
+.btn-outline-primary.custom-registrar-style:focus,
+.btn-outline-primary.custom-registrar-style:active {
+    color: #fff;
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Style the main content area */
+.main-content-area {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border: 1px solid rgba(174, 206, 226, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.main-content-area.floating-search-bar {
+    margin-top: 2rem;
+    width: auto;
+    display: inline-block;
+}
+
+.search-input {
+    width: 80%;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    border: 2px solid rgba(174, 206, 226, 0.3);
+    border-radius: 25px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.main-content-area.floating-search-bar .search-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+}
+
+.search-input:focus {
+    border-color: rgba(174, 206, 226, 0.8);
+    box-shadow: 0 0 0 4px rgba(174, 206, 226, 0.2);
 }
 
 /* Style the buttons */

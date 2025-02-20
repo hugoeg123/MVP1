@@ -2,12 +2,12 @@
 
 /* Add gradient background to body */
 body {
-    background: linear-gradient(135deg, rgb(174, 206, 226) 0%, rgba(255, 255, 255) 100%);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background: linear-gradient(135deg, rgb(174, 206, 226) 0%, rgba(255, 255, 255, 1) 100%) fixed;
     min-height: 100vh;
     margin: 0;
-    position: relative;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 /* Floating navigation button styles */
@@ -15,7 +15,7 @@ body {
     position: fixed;
     top: 20px;
     left: 20px;
-    z-index: 1050;
+    z-index: 1060;
 }
 
 .btn-floating {
@@ -38,26 +38,76 @@ body {
     background-color: rgba(174, 206, 226, 0.8);
 }
 
-/* Floating navigation menu styles */
+/* Vertical navigation menu styles */
 .floating-nav {
     position: fixed;
-    top: 80px;
-    right: 20px;
+    top: 0;
+    left: -250px;
+    height: 100vh;
+    width: 250px;
     background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    padding: 1rem;
-    z-index: 1040;
-    min-width: 200px;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    padding: 80px 1rem 1rem;
+    z-index: 1050;
+    transition: left 0.3s ease;
 }
 
-/* Add some padding to the main content */
+.floating-nav.show {
+    left: 0;
+}
+
+.floating-nav .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+}
+
+.floating-nav .nav-item {
+    width: 100%;
+    margin: 8px 0;
+}
+
+.nav-item .btn-primary,
+.nav-item .btn-outline-primary.custom-registrar-style {
+    height: 100%;
+    min-height: 40px;
+}
+
+/* Unified navigation link styles */
+.navbar-brand,
+.nav-link,
+.btn-primary,
+.btn-outline-primary.custom-registrar-style {
+    padding: 8px 16px;
+    margin-right: 10px;
+    color: #fff;
+    background-color: rgb(174, 206, 226);
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar-brand:hover,
+.nav-link:hover,
+.btn-primary:hover,
+.btn-outline-primary.custom-registrar-style:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+/* Rest of your existing styles */
 .container {
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
 
-/* Style the cards on the homepage */
 .card {
     transition: transform 0.2s;
     border-radius: 10px;
@@ -68,55 +118,33 @@ body {
     transform: translateY(-5px);
 }
 
-/* Style the navbar */
-.navbar {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Floating authentication buttons */
-.floating-auth-buttons {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1050;
+.main-content-area {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border: 1px solid rgba(174, 206, 226, 0.5);
+    border-radius: 10px;
+    padding: 20px;
     display: flex;
-    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.floating-auth-buttons .btn {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s, box-shadow 0.2s;
-    text-decoration: none;
-    font-weight: 500;
+.search-input {
+    width: 80%;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    border: 2px solid rgba(174, 206, 226, 0.3);
+    border-radius: 25px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.floating-auth-buttons .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.floating-auth-buttons .btn-primary {
-    background-color: #007bff;
-    color: #fff;
-}
-
-.btn-outline-primary.custom-registrar-style {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-}
-
-.btn-outline-primary.custom-registrar-style:hover,
-.btn-outline-primary.custom-registrar-style:focus,
-.btn-outline-primary.custom-registrar-style:active {
-    color: #fff;
-    background-color: #0056b3;
-    border-color: #0056b3;
+.search-input:focus {
+    border-color: rgba(174, 206, 226, 0.8);
+    box-shadow: 0 0 0 4px rgba(174, 206, 226, 0.2);
 }
 
 /* Style the main content area */
@@ -188,3 +216,3705 @@ body {
 .nav-link:hover::after {
     width: 100%;
 }
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.btn-lg:hover,
+.btn-outline-primary.btn-lg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+    color: #fff;
+}
+
+.floating-auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    gap: 10px;
+}
+
+.floating-auth-buttons .btn {
+    padding: 8px 16px;
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.floating-auth-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(174, 206, 226, 0.8);
+}
+
+.btn-primary.btn-lg,
+.btn-outline-primary.btn-lg {
+    background-color: rgb(174, 206, 226);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,

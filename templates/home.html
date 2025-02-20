@@ -10,8 +10,8 @@
 
         {% if not user.is_authenticated %}
             <div class="floating-auth-buttons">
-                <a href="{% url 'account_login' %}" class="btn btn-primary btn-lg px-4 me-sm-3">Entrar</a>
-                <a href="{% url 'account_signup' %}" class="btn btn-outline-primary btn-lg px-4">Registrar</a>
+                <a href="/accounts/login/" class="btn">Entrar</a>
+                <a href="/accounts/signup/" class="btn">Registrar</a>
             </div>
         {% endif %}
 

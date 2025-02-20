@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
+<div class="auth-container">
     <div class="card shadow-lg">
         <h2 class="card-title text-center">Login</h2>
         <form method="post">
@@ -15,8 +15,17 @@
                 <label for="id_password" class="form-label">Senha</label>
                 <input type="password" name="password" class="form-control" id="id_password" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Entrar</button>
+            <button type="submit" class="btn btn-primary d-flex align-items-center justify-content-center w-100">
+                <i class="material-icons me-2">login</i>
+                Entrar
+            </button>
         </form>
+        <div class="text-center mt-3">
+            <a href="{% url 'account_signup' %}" class="btn btn-primary d-flex align-items-center justify-content-center w-100">
+                <i class="material-icons me-2">person_add</i>
+                Registrar
+            </a>
+        </div>
     </div>
 </div>
 {% endblock %}
