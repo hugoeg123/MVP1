@@ -193,7 +193,15 @@ body {
 /* Style the buttons */
 .btn {
     border-radius: 25px;
-    padding: 0.5rem 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 15px;
+}
+
+.btn .material-icons {
+    font-size: 1.2em;
+    position: relative;
+    top: -1px;
 }
 
 /* Add some animation to links */
@@ -3917,4 +3925,4 @@ body {
 .btn-outline-primary.btn-lg {
     background-color: rgb(174, 206, 226);
     color: #fff;
-    box-shadow: 0 4px 8px rgba(0,
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
