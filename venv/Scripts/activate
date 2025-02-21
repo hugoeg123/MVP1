@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\hgari\OneDrive\Área de Trabalho\MVP1\venv"
+VIRTUAL_ENV="C:\Users\hgari\OneDrive\Área de Trabalho\MVP1\temp_mvp1\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Meu Perfil - Health MVP{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-lg">
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <i class="material-icons" style="font-size: 64px; color: var(--primary);">account_circle</i>
+                    <h2 class="card-title mt-3">{{ user.get_full_name }}</h2>
+                    <p class="text-muted">{{ user.email }}</p>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-group">
+                            <label class="form-label">Nome de Usuário</label>
+                            <p class="form-control-static">{{ user.username }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-group">
+                            <label class="form-label">Email</label>
+                            <p class="form-control-static">{{ user.email }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-group">
+                            <label class="form-label">Nome</label>
+                            <p class="form-control-static">{{ user.first_name }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-group">
+                            <label class="form-label">Sobrenome</label>
+                            <p class="form-control-static">{{ user.last_name }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 mt-4">
+                    <button class="btn btn-primary d-flex align-items-center justify-content-center">
+                        <i class="material-icons me-2">edit</i>
+                        Editar Perfil
+                    </button>
+                    <button class="btn btn-outline-primary d-flex align-items-center justify-content-center">
+                        <i class="material-icons me-2">lock</i>
+                        Alterar Senha
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <i class="material-icons" style="font-size: 48px; color: var(--primary);">calendar_today</i>
+                        <h5 class="card-title mt-3">Próximas Consultas</h5>
+                        <p class="card-text">Visualize suas próximas consultas agendadas</p>
+                        <a href="#" class="btn btn-primary d-flex align-items-center justify-content-center">
+                            <i class="material-icons me-2">event</i>
+                            Ver Agenda
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <i class="material-icons" style="font-size: 48px; color: var(--primary);">medical_services</i>
+                        <h5 class="card-title mt-3">Histórico Médico</h5>
+                        <p class="card-text">Acesse seu histórico de consultas e exames</p>
+                        <a href="#" class="btn btn-primary d-flex align-items-center justify-content-center">
+                            <i class="material-icons me-2">history</i>
+                            Ver Histórico
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
