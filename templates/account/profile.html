@@ -38,13 +38,21 @@
                             <p class="form-control-static">{{ user.last_name }}</p>
                         </div>
                     </div>
+                    {% if age is not None %}
+                    <div class="col-md-6">
+                        <div class="info-group">
+                            <label class="form-label">Idade</label>
+                            <p class="form-control-static">{{ age }} anos</p>
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
 
                 <div class="d-grid gap-2 mt-4">
-                    <button class="btn btn-primary d-flex align-items-center justify-content-center">
+                    <a href="{% url 'edit_profile' %}" class="btn btn-primary d-flex align-items-center justify-content-center">
                         <i class="material-icons me-2">edit</i>
                         Editar Perfil
-                    </button>
+                    </a>
                     <button class="btn btn-outline-primary d-flex align-items-center justify-content-center">
                         <i class="material-icons me-2">lock</i>
                         Alterar Senha
