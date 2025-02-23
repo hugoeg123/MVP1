@@ -1,0 +1,17 @@
+.btn:hover {
+    color: #4a4a4a !important;
+}
+
+.btn:hover i {
+    color: #4a4a4a !important;
+}
+
+.btn-dark:hover,
+.btn-dark:hover i {
+    color: #ffffff !important;
+}
+
+/* Ensure smooth transition */
+.btn, .btn i {
+    transition: color 0.3s ease;
+}

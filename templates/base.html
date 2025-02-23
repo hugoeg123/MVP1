@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS Customizado -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    {% block extra_css %}{% endblock %}
+    <style>
+        .btn-floating-profile {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        .btn-floating-profile:hover {
+            transform: scale(1.1);
+            background-color: var(--primary);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    {% if user.is_authenticated and request.resolver_match.url_name != 'profile' %}
+    <a href="{% url 'profile' %}" class="btn btn-floating-profile" aria-label="Perfil">
+        <i class="material-icons">person</i>
+    </a>
+    {% endif %}
+
+    <div class="floating-nav-button">
+        <button class="btn btn-floating" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="material-icons">menu</span>
+        </button>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light floating-nav collapse" id="navbarNav">
+        <div class="container w-100">
+            <ul class="navbar-nav gap-3 w-100">
+                <li class="nav-item flex-grow-1">
+                    <a href="{% url 'home' %}" class="btn btn-primary d-flex align-items-center justify-content-center w-100">
+                        <i class="material-icons me-2">home</i>
+                        Home
+                    </a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item flex-grow-1">
+                        <a href="#" class="btn btn-primary d-flex align-items-center justify-content-center w-100">
+                            <i class="material-icons me-2">assignment</i>
+                            Histórico Médico
+                        </a>
+                    </li>
+                    <li class="nav-item flex-grow-1">
+                        <a href="/profile/" class="btn btn-primary d-flex align-items-center justify-content-center w-100">
+                            <i class="material-icons me-2">person</i>
+                            Perfil
+                        </a>
+                    </li>
+                    <li class="nav-item flex-grow-1">
+                        <form method="post" action="{% url 'account_logout' %}" class="w-100">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-primary d-flex align-items-center justify-content-center w-100">
+                                <i class="material-icons me-2">logout</i>
+                                Sair
+                            </button>
+                        </form>
+                    </li>
+                    {% else %}
+                        <li class="nav-item flex-grow-1">
+                            <a href="{% url 'account_login' %}" class="btn btn-primary d-flex align-items-center justify-content-center w-100">
+                                <i class="material-icons me-2">login</i>
+                                Entrar
+                            </a>
+                        </li>
+                        <li class="nav-item flex-grow-1">
+                            <a href="{% url 'account_signup' %}" class="btn btn-outline-primary custom-registrar-style d-flex align-items-center justify-content-center w-100">
+                                <i class="material-icons me-2">person_add</i>
+                                Registrar
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        {% block content %}{% endblock %}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

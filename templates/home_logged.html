@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Health MVP{% endblock %}
+
+{% block content %}
+<a href="/profile/" class="btn btn-floating-profile" aria-label="Perfil">
+    <i class="material-icons">person</i>
+</a>
+
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <h1 class="display-4 mb-4">Bem-vindo, {{ user.get_full_name|default:user.email }}!</h1>
+        <p class="lead mb-4">Gerencie sua saúde de forma inteligente</p>
+
+        <div class="main-content-area mt-5">
+            <input type="text" class="search-input" placeholder="Pesquisar produtos ou serviços de saúde...">
+        </div>
+
+
+    </div>
+</div>
+
+<style>
+.btn-floating-profile {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1030;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgb(174, 206, 226);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: transform 0.2s, background-color 0.2s;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.btn-floating-profile:hover {
+    transform: scale(1.1);
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-floating-profile .material-icons {
+    font-size: 24px;
+}
+</style>
+{% endblock %}

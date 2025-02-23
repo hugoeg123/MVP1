@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Meu Perfil - Health MVP{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-lg">
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <i class="material-icons" style="font-size: 64px; color: var(--primary);">account_circle</i>
+                    <h2 class="card-title mt-3">{{ user.get_full_name }}</h2>
+                    {% if age is not None %}
+                    <p class="text-muted">{{ age }} anos</p>
+                    {% endif %}
+                </div>
+
+                <div class="d-grid gap-2 mt-4">
+                    <a href="{% url 'edit_profile' %}" class="btn btn-primary d-flex align-items-center justify-content-center">
+                        <i class="material-icons me-2">edit</i>
+                        Editar Perfil
+                    </a>
+                    <a href="{% url 'account_change_password' %}" class="btn btn-primary d-flex align-items-center justify-content-center">
+                        <i class="material-icons me-2">lock</i>
+                        Alterar Senha
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <i class="material-icons" style="font-size: 48px; color: var(--primary);">calendar_today</i>
+                        <h5 class="card-title mt-3">Próximas Consultas</h5>
+                        <p class="card-text">Visualize suas próximas consultas agendadas</p>
+                        <a href="#" class="btn btn-primary d-flex align-items-center justify-content-center">
+                            <i class="material-icons me-2">event</i>
+                            Ver Agenda
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

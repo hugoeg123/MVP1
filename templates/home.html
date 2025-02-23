@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Health MVP{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <h1 class="display-4 mb-4">Bem-vindo ao Health MVP</h1>
+        <p class="lead mb-4">Sua plataforma completa para gestão de saúde</p>
+
+        {% if not user.is_authenticated %}
+            <div class="floating-auth-buttons">
+                <a href="/accounts/login/" class="btn btn-primary">
+                    <i class="material-icons" style="vertical-align: middle; margin-right: 8px;">login</i>
+                    Entrar
+                </a>
+                <a href="/accounts/signup/" class="btn btn-success">
+                    <i class="material-icons" style="vertical-align: middle; margin-right: 8px;">person_add</i>
+                    Registrar
+                </a>
+            </div>
+        {% endif %}
+
+        <div class="main-content-area mt-5">
+            <input type="text" class="search-input" placeholder="Pesquisar produtos ou serviços de saúde...">
+        </div>
+    </div>
+</div>
+{% endblock %}

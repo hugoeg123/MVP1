@@ -1,0 +1,59 @@
+/* Garanta que o container ocupe toda a altura da tela */
+html, body {
+    height: 100%;
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Center content */
+.auth-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Estilização do cartão */
+.card {
+    border-radius: 15px;
+    border: none;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.shadow-lg {
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+}
+
+/* Estilização do formulário */
+.form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(0,0,0,.1);
+}
+
+.form-control:focus {
+    border-color: #aed0e2;
+    box-shadow: 0 0 0 0.2rem rgba(174,208,226,.25);
+}
+
+.btn-primary {
+    background-color: rgb(174,206,226);
+    border-color: rgb(174,206,226);
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: rgb(154,186,206);
+    border-color: rgb(154,186,206);
+    transform: translateY(-2px);
+}
