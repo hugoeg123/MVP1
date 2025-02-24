@@ -57,6 +57,81 @@
         max-height: 400px;
         overflow-y: auto;
         z-index: 1000;
+        padding: 8px 0;
+    }
+
+    .search-result-item {
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .search-result-item:hover {
+        background-color: #f1f3f4;
+    }
+
+    .medication-name {
+        font-weight: 500;
+        color: #202124;
+        font-size: 14px;
+    }
+
+    .medication-info {
+        font-size: 12px;
+        color: #5f6368;
+    }
+
+    .temp-item {
+        background: #e8f0fe;
+        border-radius: 16px;
+        padding: 6px 12px;
+        margin: 4px;
+        display: inline-flex;
+        align-items: center;
+        font-size: 14px;
+        color: #1967d2;
+        transition: all 0.2s;
+        border: 1px solid #1967d2;
+    }
+
+    .temp-item:hover {
+        background: #d2e3fc;
+    }
+
+    .temp-item .remove-temp {
+        margin-left: 8px;
+        cursor: pointer;
+        color: #1967d2;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 1;
+        opacity: 0.8;
+    }
+
+    .temp-item .remove-temp:hover {
+        opacity: 1;
+    }
+
+    .temp-item small {
+        color: #5f6368;
+        margin-left: 6px;
+        font-style: italic;
+        font-size: 12px;
+    }
+
+    #tempMedications {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        min-height: 45px;
+        padding: 8px;
+        border-radius: 8px;
+        background-color: #fff;
+        margin-bottom: 20px;
+        border: 1px solid #e8eaed;
     }
         position: absolute;
         top: 100%;
@@ -175,11 +250,11 @@
     <div class="search-container">
         <form method="POST" id="medicationForm">
             {% csrf_token %}
-            <div class="chrome-search mb-4">
+            <div class="chrome-search">
                 <i class="fas fa-search search-icon"></i>
-                <input type="text" id="medication-search" class="chrome-search-bar form-control" placeholder="Busque por nome do medicamento ou classe terapêutica" />
+                <input type="text" id="medication-search" class="chrome-search-bar" placeholder="Busque por nome do medicamento ou classe terapêutica">
+                <input type="hidden" name="medication" id="selected-medication">
                 <div id="search-results" class="search-results"></div>
-                <input type="hidden" name="medication" id="selected-medication" />
             </div>
 
             <div id="tempMedications" class="mb-3"></div>
@@ -204,58 +279,48 @@
         <div class="col-md-6 mx-auto">
             <div class="search-container mb-4">
                 <h3 class="mb-3">Medicamentos em Uso</h3>
-                <ul class="list-group">
+                <div class="medication-tags">
                     {% for medication in medications %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center" style="background-color: #f8f9fa; border: 1px solid rgba(0,0,0,.125); margin-bottom: 8px; border-radius: 8px;">
-                        <div>
-                            <span style="font-weight: 500; color: #3c4043;">{{ medication.medication.nome_produto }}</span>
-                            {% if medication.notes %}
-                            <br>
-                            <small class="text-muted" style="font-style: italic;">{{ medication.notes }}</small>
-                            {% endif %}
-                        </div>
+                    <div class="medication-tag" style="background-color: #e8f0fe; color: #1967d2; border: 1px solid #1967d2;">
+                        <span>{{ medication.medication.nome_produto }}</span>
+                        {% if medication.notes %}
+                        <small style="color: #5f6368; margin-left: 8px;">{{ medication.notes }}</small>
+                        {% endif %}
                         <form method="POST" style="display: inline;" action="{% url 'delete_medication' medication.id %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-outline-danger btn-sm" style="border-radius: 20px;">
-                                <i class="fas fa-times"></i> Remover
-                            </button>
+                            <button type="submit" class="tag-remove-btn" style="background: none; border: none; color: #1967d2; font-size: 18px; cursor: pointer; padding: 0 8px;">×</button>
                         </form>
-                    </li>
+                    </div>
                     {% empty %}
-                    <li class="list-group-item text-center" style="background-color: #f8f9fa; border: 1px solid rgba(0,0,0,.125); border-radius: 8px;">
-                        <i class="fas fa-pills text-muted mb-2" style="font-size: 24px;"></i>
-                        <p class="mb-0">Nenhum medicamento registrado</p>
-                    </li>
+                    <div class="empty-state" style="text-align: center; padding: 20px; color: #5f6368;">
+                        <i class="fas fa-pills" style="font-size: 24px; margin-bottom: 8px;"></i>
+                        <p style="margin: 0;">Nenhum medicamento registrado</p>
+                    </div>
                     {% endfor %}
-                </ul>
+                </div>
             </div>
 
             <div class="search-container">
                 <h3 class="mb-3">Alergias</h3>
-                <ul class="list-group">
+                <div class="medication-tags">
                     {% for allergy in allergies %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center" style="background-color: #fff3f3; border: 1px solid #ffcdd2; margin-bottom: 8px; border-radius: 8px;">
-                        <div>
-                            <span style="font-weight: 500; color: #d32f2f;">{{ allergy.medication.nome_produto }}</span>
-                            {% if allergy.notes %}
-                            <br>
-                            <small class="text-muted" style="font-style: italic;">{{ allergy.notes }}</small>
-                            {% endif %}
-                        </div>
+                    <div class="medication-tag" style="background-color: #fff3f3; color: #d32f2f; border: 1px solid #ffcdd2;">
+                        <span>{{ allergy.medication.nome_produto }}</span>
+                        {% if allergy.notes %}
+                        <small style="color: #5f6368; margin-left: 8px;">{{ allergy.notes }}</small>
+                        {% endif %}
                         <form method="POST" style="display: inline;" action="{% url 'delete_medication' allergy.id %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-outline-danger btn-sm" style="border-radius: 20px;">
-                                <i class="fas fa-times"></i> Remover
-                            </button>
+                            <button type="submit" class="tag-remove-btn" style="background: none; border: none; color: #d32f2f; font-size: 18px; cursor: pointer; padding: 0 8px;">×</button>
                         </form>
-                    </li>
+                    </div>
                     {% empty %}
-                    <li class="list-group-item text-center" style="background-color: #fff3f3; border: 1px solid #ffcdd2; border-radius: 8px;">
-                        <i class="fas fa-allergies text-danger mb-2" style="font-size: 24px;"></i>
-                        <p class="mb-0">Nenhuma alergia registrada</p>
-                    </li>
+                    <div class="empty-state" style="text-align: center; padding: 20px; color: #5f6368;">
+                        <i class="fas fa-allergies" style="font-size: 24px; margin-bottom: 8px; color: #d32f2f;"></i>
+                        <p style="margin: 0;">Nenhuma alergia registrada</p>
+                    </div>
                     {% endfor %}
-                </ul>
+                </div>
             </div>
         </div>
         </div>

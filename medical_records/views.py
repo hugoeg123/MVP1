@@ -1,16 +1,32 @@
 from dal_select2.views import Select2QuerySetView
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from django.db.models import Q
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from .models import MedicamentoAnvisa, UserMedication
 
-class MedicamentoAutocomplete(Select2QuerySetView):
-    def get_queryset(self):
-        qs = MedicamentoAnvisa.objects.all()
-        if self.q:
-            qs = qs.filter(nome_produto__icontains=self.q) | \
-                 qs.filter(classe_terapeutica__icontains=self.q) | \
-                 qs.filter(principio_ativo__icontains=self.q)
-        return qs
+@api_view(['GET'])
+def medication_autocomplete(request):
+    search_term = request.GET.get('q', '').strip()
+    
+    if len(search_term) < 2:
+        return Response({'results': []})
+    
+    results = MedicamentoAnvisa.objects.filter(
+        Q(nome_produto__icontains=search_term) | 
+        Q(classe_terapeutica__icontains=search_term) |
+        Q(principio_ativo__icontains=search_term)
+    )[:10]
+
+    suggestions = [{
+        'id': med.id,
+        'text': med.nome_produto,
+        'classe_terapeutica': med.classe_terapeutica,
+        'principio_ativo': med.principio_ativo
+    } for med in results]
+
+    return Response({'results': suggestions})
 
 @login_required
 def manage_medications(request):
