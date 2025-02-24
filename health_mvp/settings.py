@@ -13,11 +13,18 @@ SECRET_KEY = 'django-insecure-ucj_srk014=4&m^0g5x$a3=p!fs!5h51g$s051z3cb@z!7$m@n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# Security Settings
+# Security Settings for Development
 SECURE_PROXY_SSL_HEADER = None
 SECURE_SSL_REDIRECT = False
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_HSTS_SECONDS = 0
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_HSTS_PRELOAD = False
+USE_X_FORWARDED_HOST = False
+USE_X_FORWARDED_PORT = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 

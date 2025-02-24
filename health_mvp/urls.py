@@ -9,6 +9,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('', include('accounts.urls')),
     path('home-logged/', home_logged, name='home_logged'),
+    path('medical-records/', include('medical_records.urls')),
 ]
 
 if settings.DEBUG:

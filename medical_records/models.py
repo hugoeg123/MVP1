@@ -1,6 +1,27 @@
 from django.db import models
 from django.conf import settings
 
+class MedicamentoAnvisa(models.Model):
+    nome_produto = models.CharField(max_length=200)
+    principio_ativo = models.TextField()
+    classe_terapeutica = models.CharField(max_length=200)
+    
+    def __str__(self):
+        return f"{self.nome_produto} ({self.classe_terapeutica})"
+
+class UserMedication(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='medications')
+    medication = models.ForeignKey(MedicamentoAnvisa, on_delete=models.CASCADE)
+    is_allergy = models.BooleanField(default=False)
+    notes = models.TextField(blank=True, default='')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ['user', 'medication', 'is_allergy']
+
+    def __str__(self):
+        return f"{self.user.username} - {self.medication.nome_produto} ({'Allergy' if self.is_allergy else 'Medication'})"
+
 class MedicalRecord(models.Model):
     patient = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='medical_records')
     doctor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='doctor_records')

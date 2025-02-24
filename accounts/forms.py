@@ -2,18 +2,20 @@ from allauth.account.forms import SignupForm
 from django import forms
 from django.contrib.auth import get_user_model
 from .models import UserProfile, Antecedentes, DadosBiometricos
+from medical_records.models import MedicamentoAnvisa
 
 class CustomSignupForm(SignupForm):
     username = forms.CharField(max_length=30, label='Nome de Usuário')
     first_name = forms.CharField(max_length=30, label='Nome')
     last_name = forms.CharField(max_length=30, label='Sobrenome')
-    
     def save(self, request):
         user = super().save(request)
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
         user.username = self.cleaned_data['username']
         user.save()
+        # Create UserProfile if it doesn't exist
+        UserProfile.objects.get_or_create(user=user)
         return user
 
 class UserEditForm(forms.ModelForm):
@@ -74,6 +76,34 @@ class UserEditForm(forms.ModelForm):
     sus_card_number = forms.CharField(max_length=15, required=False, label='Número do Cartão SUS')
     health_insurance = forms.CharField(max_length=100, required=False, label='Convênio/Plano de Saúde')
 
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        if commit:
+            user.save()
+            # Update UserProfile fields
+            profile = user.userprofile
+            profile.phone_number = self.cleaned_data.get('phone_number')
+            profile.street = self.cleaned_data.get('street')
+            profile.number = self.cleaned_data.get('number')
+            profile.neighborhood = self.cleaned_data.get('neighborhood')
+            profile.zip_code = self.cleaned_data.get('zip_code')
+            profile.city = self.cleaned_data.get('city')
+            profile.state = self.cleaned_data.get('state')
+            profile.date_of_birth = self.cleaned_data.get('date_of_birth')
+            profile.sex = self.cleaned_data.get('sex')
+            profile.marital_status = self.cleaned_data.get('marital_status')
+            profile.profession = self.cleaned_data.get('profession')
+            profile.race_ethnicity = self.cleaned_data.get('race_ethnicity')
+            profile.nationality = self.cleaned_data.get('nationality')
+            profile.emergency_contact_name = self.cleaned_data.get('emergency_contact_name')
+            profile.emergency_contact_phone = self.cleaned_data.get('emergency_contact_phone')
+            profile.emergency_contact_relationship = self.cleaned_data.get('emergency_contact_relationship')
+            profile.education_level = self.cleaned_data.get('education_level')
+            profile.religion = self.cleaned_data.get('religion')
+            profile.sus_card_number = self.cleaned_data.get('sus_card_number')
+            profile.health_insurance = self.cleaned_data.get('health_insurance')
+            profile.save()
+        return user
     class Meta:
         model = get_user_model()
         fields = ['username', 'first_name', 'last_name', 'email']
@@ -88,17 +118,43 @@ class UserEditForm(forms.ModelForm):
         }
 
 class AntecedentesForm(forms.ModelForm):
+    medications = forms.ModelMultipleChoiceField(
+        queryset=MedicamentoAnvisa.objects.all(),
+        required=False,
+        widget=forms.SelectMultiple(attrs={'class': 'form-control'}),
+        label='Medicações em Uso'
+    )
+    allergies = forms.ModelMultipleChoiceField(
+        queryset=MedicamentoAnvisa.objects.all(),
+        required=False,
+        widget=forms.SelectMultiple(attrs={'class': 'form-control'}),
+        label='Alergias'
+    )
+
     class Meta:
         model = Antecedentes
-        fields = ['historico_familiar', 'alergias', 'doencas_cronicas', 'cirurgias', 'medicamentos']
+        fields = ['doencas_cronicas', 'cirurgias', 'historico_familiar', 'habitos', 'medications', 'allergies']
         widgets = {
-            'historico_familiar': forms.Textarea(attrs={'rows': 3}),
-            'alergias': forms.Textarea(attrs={'rows': 3}),
             'doencas_cronicas': forms.Textarea(attrs={'rows': 3}),
             'cirurgias': forms.Textarea(attrs={'rows': 3}),
-            'medicamentos': forms.Textarea(attrs={'rows': 3}),
+            'historico_familiar': forms.Textarea(attrs={'rows': 3}),
+            'habitos': forms.Textarea(attrs={'rows': 3}),
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance and self.instance.profile:
+            self.fields['medications'].initial = self.instance.profile.medications.all()
+            self.fields['allergies'].initial = self.instance.profile.allergies.all()
+
+    def save(self, commit=True):
+        antecedentes = super().save(commit=False)
+        if commit:
+            antecedentes.save()
+            if antecedentes.profile:
+                antecedentes.profile.medications.set(self.cleaned_data['medications'])
+                antecedentes.profile.allergies.set(self.cleaned_data['allergies'])
+        return antecedentes
 class DadosBiometricosForm(forms.ModelForm):
     class Meta:
         model = DadosBiometricos
@@ -115,24 +171,3 @@ class DadosBiometricosForm(forms.ModelForm):
                 ('O+', 'O+'), ('O-', 'O-'),
             ])
         }
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        if self.instance and hasattr(self.instance, 'userprofile'):
-            self.fields['phone_number'].initial = self.instance.userprofile.phone_number
-            self.fields['address'].initial = self.instance.userprofile.address
-            self.fields['date_of_birth'].initial = self.instance.userprofile.date_of_birth
-            self.fields['is_doctor'].initial = self.instance.userprofile.is_doctor
-
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        if commit:
-            user.save()
-            # Update UserProfile
-            profile = user.userprofile
-            profile.phone_number = self.cleaned_data['phone_number']
-            profile.address = self.cleaned_data['address']
-            profile.date_of_birth = self.cleaned_data['date_of_birth']
-            profile.is_doctor = self.cleaned_data['is_doctor']
-            profile.save()
-        return user

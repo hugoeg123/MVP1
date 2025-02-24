@@ -1,52 +1,45 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
-from .models import MedicalRecord, Attachment
+from dal_select2.views import Select2QuerySetView
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import MedicamentoAnvisa, UserMedication
 
-class MedicalRecordListView(LoginRequiredMixin, ListView):
-    model = MedicalRecord
-    template_name = 'medical_records/record_list.html'
-    context_object_name = 'records'
-
+class MedicamentoAutocomplete(Select2QuerySetView):
     def get_queryset(self):
-        if self.request.user.userprofile.is_doctor:
-            return MedicalRecord.objects.filter(doctor=self.request.user)
-        return MedicalRecord.objects.filter(patient=self.request.user)
+        qs = MedicamentoAnvisa.objects.all()
+        if self.q:
+            qs = qs.filter(nome_produto__icontains=self.q) | \
+                 qs.filter(classe_terapeutica__icontains=self.q) | \
+                 qs.filter(principio_ativo__icontains=self.q)
+        return qs
 
-class MedicalRecordDetailView(LoginRequiredMixin, DetailView):
-    model = MedicalRecord
-    template_name = 'medical_records/record_detail.html'
-    context_object_name = 'record'
+@login_required
+def manage_medications(request):
+    if request.method == 'POST':
+        medication_id = request.POST.get('medication')
+        is_allergy = request.POST.get('is_allergy') == 'true'
+        notes = request.POST.get('notes', '')
+        
+        if medication_id:
+            medication = MedicamentoAnvisa.objects.get(id=medication_id)
+            UserMedication.objects.update_or_create(
+                user=request.user,
+                medication=medication,
+                is_allergy=is_allergy,
+                defaults={'notes': notes}
+            )
+            
+        return redirect('manage_medications')
+    
+    medications = UserMedication.objects.filter(user=request.user, is_allergy=False)
+    allergies = UserMedication.objects.filter(user=request.user, is_allergy=True)
+    
+    return render(request, 'medical_records/manage_medications.html', {
+        'medications': medications,
+        'allergies': allergies
+    })
 
-    def get_queryset(self):
-        if self.request.user.userprofile.is_doctor:
-            return MedicalRecord.objects.filter(doctor=self.request.user)
-        return MedicalRecord.objects.filter(patient=self.request.user)
-
-class MedicalRecordCreateView(LoginRequiredMixin, CreateView):
-    model = MedicalRecord
-    template_name = 'medical_records/record_form.html'
-    fields = ['patient', 'diagnosis', 'treatment', 'prescription', 'notes']
-    success_url = reverse_lazy('record-list')
-
-    def form_valid(self, form):
-        form.instance.doctor = self.request.user
-        return super().form_valid(form)
-
-    def get_form(self, form_class=None):
-        form = super().get_form(form_class)
-        if not self.request.user.userprofile.is_doctor:
-            form.fields['patient'].widget.attrs['disabled'] = True
-        return form
-
-class MedicalRecordUpdateView(LoginRequiredMixin, UpdateView):
-    model = MedicalRecord
-    template_name = 'medical_records/record_form.html'
-    fields = ['diagnosis', 'treatment', 'prescription', 'notes']
-    success_url = reverse_lazy('record-list')
-
-    def get_queryset(self):
-        if self.request.user.userprofile.is_doctor:
-            return MedicalRecord.objects.filter(doctor=self.request.user)
-        return MedicalRecord.objects.none()
+@login_required
+def delete_medication(request, medication_id):
+    medication = get_object_or_404(UserMedication, id=medication_id, user=request.user)
+    medication.delete()
+    return redirect('manage_medications')
